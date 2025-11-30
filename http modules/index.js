@@ -1,5 +1,5 @@
 const http = require('http');
-const server = http.Server((req, res) => {
+const server = http.Server((req, res) => { 
     if(req.url === "/"){
     res.writeHead(200, (
         // 'content-type', " text/plain"
