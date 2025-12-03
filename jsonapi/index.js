@@ -16,7 +16,7 @@ const server = http.Server((req,res)=>{
     else if( req.url === '/userapi'){
         fs.readFile(`${__dirname}/helloData/toDo.json`, 'utf-8' ,(err, data) =>{
        if(err){
-        res.writeHead(500,('content-Type','text/plain'));
+        res.writeHead(500 ,('content-Type','text/plain'));
         res.end("server error");
           
        }
@@ -26,6 +26,21 @@ const server = http.Server((req,res)=>{
            }
         });
     }
+
+    // else if(req.url === '/update'){
+    //     fs.appendFile(`${__dirname}/helloData/toDo.json` , (err)=>{
+    //         if(err) {
+    //             res.writeHead(500,("content-Type", "text/plain"))
+    //             res.end("error");
+
+    //         }
+    //         else{
+    //             res.writeHead(200,("content-Type","update/html"))
+    //             res.end(data);
+
+    //         }
+    //     } )
+    // }
 
     
 
