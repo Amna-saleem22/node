@@ -1,3 +1,4 @@
+const { error } = require('console');
 const express = require('express');
 const app = express();
 const Port = 3000;
@@ -107,6 +108,21 @@ userRouter.get('/',(req,res)=>{
 app.use("/" , userRouter);
   
   
+
+
+
+  app.use((err,req,res,next)=>{
+console.log(err.message);
+res.status(err.status || 500).json(
+    success.false,
+    error.err.message
+);
+next();
+  });
+  app.get('/error',(req,res)=>{
+    res.send("<h1>  ERROR MIDDLEWARE</h1> <P>Error Handling refers to how Express catches and processes errors that occur both synchronously and asynchronously. Express comes with a default error handler so you don’t need to write your own to get started.</P>  <button href='https://expressjs.com/en/guide/error-handling.html'>Learn</button>")
+  });
+
 
 
 app.listen(Port,()=>{
