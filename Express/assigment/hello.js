@@ -15,20 +15,22 @@ app.get('/time', requestTimeLogger, (req, res) => {
 
 
 
-function checkAuth(err,req,res,next){
-    const id = 12345;
-   
-    next();
+function checkAuth(req,res,next){
+    const id = req.query.id;
+    if(id !== 12345){
+          next();
+       }
+    else{ return res.status(404).json({
+            success: false , error:"Unauthorized access"
+        });
+    }
+  
 }
 
 app.get('/secure' , checkAuth,(req,res)=>{
-     if(id !== 12345){
-        return res.status(404).json({
-            success: false , error:"Unauthorized access"
-        });
-    };
+  
     res.send("welcome to the secure area!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    console.log("welcome to the secure area!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+   
 })
 
 
